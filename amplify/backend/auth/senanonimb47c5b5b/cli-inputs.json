@@ -1,0 +1,46 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "senanonimb47c5b5b_identitypool_b47c5b5b",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "senanob47c5b5b",
+    "userPoolName": "senanonimb47c5b5b_userpool_b47c5b5b",
+    "autoVerifiedAttributes": [
+      "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+      "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+      "nickname"
+    ],
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientLambdaRole": "senanob47c5b5b_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "sharedId": "b47c5b5b",
+    "resourceName": "senanonimb47c5b5b",
+    "authSelections": "identityPoolAndUserPool",
+    "useDefault": "default",
+    "triggers": {},
+    "userPoolGroupList": [],
+    "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": true
+  }
+}
