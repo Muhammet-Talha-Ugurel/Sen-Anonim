@@ -1,25 +1,26 @@
+// ignore_for_file: depend_on_referenced_packages
 import 'package:flutter/material.dart';
-import 'package:senanonim/presentation/screens/chat.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:senanonim/presentation/screens/home.dart';
 import 'package:senanonim/presentation/screens/wellcome.dart';
 
-class AppRouter{
-  Route? onGenerateRoute(RouteSettings routeSettings){
-    switch (routeSettings.name){
-      case '/':
-      return MaterialPageRoute(
-        builder: (_) => Wellcome()
-        );
-        case '/home':
-      return MaterialPageRoute(
-        builder: (_) => HomeScreen()
-        );
-        case '/chat':
-      return MaterialPageRoute(
-        builder: (_) => ChatScreen()
-        );
-        default: 
-        return null;
-    }
-  } 
+import '../../business_logic/bloc/auth/auth_bloc.dart';
+import '../../business_logic/bloc/auth/auth_state.dart';
+
+class AuthFlowNavigator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+      return Navigator(
+        pages: [
+            if (state is UnauthentiactedState)
+              MaterialPage(child: Wellcome())
+              
+            else if (state is AuthenticatedState)
+              MaterialPage(child: HomeScreen())
+        ],
+        onPopPage: (route, result) => route.didPop(result),
+      );
+    });
+  }
 }

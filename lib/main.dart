@@ -7,16 +7,16 @@ void main() {
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
-  final AppRouter _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(brightness: Brightness.dark) ,
       darkTheme: ThemeData(
     brightness: Brightness.dark,
   ),
-  onGenerateRoute: _appRouter.onGenerateRoute,
+  home: AuthFlowNavigator(),
     );
   }
 }
