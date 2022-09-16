@@ -43,6 +43,7 @@ class Wellcome extends StatelessWidget {
             ),
             TextButton(
                 onPressed: () => {
+                  Navigator.of(context).pushNamed('/home')
                     },
                 child: Text(
                   "Continue",
