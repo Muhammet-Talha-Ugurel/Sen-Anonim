@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "763495736644",
+    "project_id": "senanonim-b39c6",
+    "storage_bucket": "senanonim-b39c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763495736644:android:aa3af91af85a9d9cb96311",
+        "android_client_info": {
+          "package_name": "com.example.senanonim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763495736644-a4nbcbu5l4c60s1q4p06k2npvs8a6a1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCe9pK60S13PBVXhpFpkemggPA5VFgHAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763495736644-a4nbcbu5l4c60s1q4p06k2npvs8a6a1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

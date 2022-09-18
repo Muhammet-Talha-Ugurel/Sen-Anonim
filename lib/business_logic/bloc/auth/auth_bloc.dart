@@ -7,16 +7,29 @@ import 'auth_state.dart';
 
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthRepository authRepository;
-  AuthBloc({required this.authRepository})
+  final _authRepository = AuthRepository();
+  AuthBloc()
       : super(UnauthentiactedState()) {
-    on<CreateAcountEvent>(_onCreateAcountEvent);
     on<AutoLoginEvent>(_onAutoLoginEvent);
+    on<CreateAcountEvent>(_onCreateAcountEvent);
   }
+  Future<void> _onAutoLoginEvent(AutoLoginEvent event, Emitter<AuthState> emit) async {
+    emit(UnauthentiactedState());
+    final result  = await _authRepository.attemptAutoLogin();
+    if(result!){
+      emit(AuthenticatedState());
+    }else{
+    emit(UnauthentiactedState());
+    }
+  }
+
   void _onCreateAcountEvent(CreateAcountEvent event, Emitter<AuthState> emit){
-    emit(AuthenticatedState());
-  }
-  void _onAutoLoginEvent(AutoLoginEvent event, Emitter<AuthState> emit){
-    emit(AuthenticatedState());
+    emit(CreatingAcountState());
+    try{
+      _authRepository.createAcount();
+      emit(AuthenticatedState());
+    }catch (e){
+      emit(FailedToCreateAcountState(error: e as Error));
+    }
   }
 }

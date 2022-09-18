@@ -1,60 +1,40 @@
 // ignore_for_file: use_rethrow_when_possible, depend_on_referenced_packages
-import 'package:flutter/foundation.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:uuid/uuid.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthRepository {
-  Future<AuthUser> getCurrentUser() async {
-    final user = await Amplify.Auth.getCurrentUser();
-    return user;
-  }
 
-  Future<bool> attemptAutoLogin() async {
-    try {
-      final session = await Amplify.Auth.fetchAuthSession();
-      print(session.isSignedIn);
-      return session.isSignedIn;
-    } catch (e) {
-      throw e;
+  final CollectionReference userCollection = FirebaseFirestore.instance.collection('User');
+  
+
+  Future<bool?> attemptAutoLogin() async{
+    User? user = await FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return false;
+    } else {
+      return true;
     }
+  
   }
 
-  Future<AuthUser?> login({
-    required String? username,
-    required String? password,
-  }) async {
-    try {
-      final result =
-          await Amplify.Auth.signIn(username: username!, password: password);
-      return result.isSignedIn ? (await getCurrentUser()) : null;
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  Future<bool> signUp({
-    @required String? username,
-    @required String? email,
-    @required String? password,
-  }) async {
-    Map<CognitoUserAttributeKey, String> userAttributes = {
-      CognitoUserAttributeKey.email: email!,
-      CognitoUserAttributeKey.preferredUsername: username!,
-    };
-    final options = CognitoSignUpOptions(userAttributes: userAttributes);
-    try {
-      final result = await Amplify.Auth.signUp(
-        username: username,
-        password: password!,
-        options: options,
-      );
-      return result.isSignUpComplete;
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  Future<void> signOut() async {
-    await Amplify.Auth.signOut();
+  void createAcount() async {
+    final gmail = '@mtu.com';
+    const uuid = Uuid();
+    final emailAddress = uuid.v4();
+    final password = uuid.v4();
+    UserCredential result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: emailAddress + gmail,
+    password: password,
+  );
+  User? user = result.user;
+  await userCollection.doc(user!.uid).set({
+    'uid': user.uid,
+  });
+  final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: emailAddress + gmail,
+    password: password
+  );
   }
 }
