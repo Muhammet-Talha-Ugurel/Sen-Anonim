@@ -1,4 +1,6 @@
 class Chat {
   final String Name;
-  Chat({ required this.Name});
+  final String Id;
+
+  Chat({required this.Name,required this.Id});
 }

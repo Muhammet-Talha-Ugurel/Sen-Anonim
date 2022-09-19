@@ -1,9 +1,4 @@
-import '../../../data/models/chat.dart';
+part of 'app_bloc.dart';
 
+@immutable
 abstract class AppEvent {}
-
-class LoadChatsEvent extends AppEvent {
-  List<Chat?> chat;
-
-  LoadChatsEvent({required this.chat});
-}

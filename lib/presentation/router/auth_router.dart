@@ -4,7 +4,7 @@ import 'package:senanonim/presentation/router/app_router.dart';
 import 'package:senanonim/presentation/screens/home.dart';
 import 'package:senanonim/presentation/screens/wellcome.dart';
 
-import '../../business_logic/bloc/app/app_bloc.dart';
+import '../../business_logic/bloc/chat/chat_bloc.dart';
 import '../../business_logic/bloc/auth/auth_bloc.dart';
 import '../../business_logic/bloc/auth/auth_event.dart';
 import '../../business_logic/bloc/auth/auth_state.dart';
@@ -21,19 +21,19 @@ class AuthFlowNavigator extends StatelessWidget {
               if (state is UnauthentiactedState)
                 MaterialPage(
                     child: BlocProvider(
-                  create: (context) => AppBloc(),
+                  create: (context) => ChatBloc(),
                   child: Wellcome(),
                 ))
               else if (state is AuthenticatedState)
                 MaterialPage(
                     child: BlocProvider(
-                  create: (context) => AppBloc(),
+                  create: (context) => ChatBloc(),
                   child: AppNavigator(),
                 ))
                 else
                 MaterialPage(
                     child: BlocProvider(
-                  create: (context) => AppBloc(),
+                  create: (context) => ChatBloc(),
                   child: Scaffold(body: Center(child: CircularProgressIndicator(),)),
                 ))
             ],

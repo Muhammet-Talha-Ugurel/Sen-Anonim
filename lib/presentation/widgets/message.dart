@@ -13,11 +13,11 @@ class Message extends StatelessWidget {
     return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: sendByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
                   children:[
                     Card(child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Test Mesage1'),
+                      child: Text(text,),
                     ),),
                   ],
                 ),
