@@ -43,7 +43,7 @@ class AppRepository {
   Stream<List<Message>> getMessages(String chatId) {
   User? user = FirebaseAuth.instance.currentUser;
     final docMessage = chatCollection.doc(chatId);
-    return docMessage.collection('Message').orderBy('createdAt', descending: false).snapshots().map((snapshot) => snapshot.docs.map((doc) =>  Message.fromJson(doc.data(), user)).toList());
+    return docMessage.collection('Message').orderBy('createdAt', descending: true).snapshots().map((snapshot) => snapshot.docs.map((doc) =>  Message.fromJson(doc.data(), user)).toList());
   }
 }
 

@@ -24,7 +24,7 @@ class AppNavigator extends StatelessWidget {
         builder: (context, state) {
           return Navigator(
             pages: [
-              if (state is HomeState)
+              if (state is HomeScreenState)
                 MaterialPage(
                     child: BlocProvider(
                   create: (context) => ChatBloc(),

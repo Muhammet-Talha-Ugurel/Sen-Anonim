@@ -5,7 +5,7 @@ part 'nav_event.dart';
 part 'nav_state.dart';
 
 class NavBloc extends Bloc<NavEvent, NavState> {
-  NavBloc() : super(HomeState()) {
+  NavBloc() : super(HomeScreenState()) {
     on<HomeScreenEvent>(_onHomeScreenEvent);
     on<ChatScreenEvent>(_onChatScreenEvent);
   }
