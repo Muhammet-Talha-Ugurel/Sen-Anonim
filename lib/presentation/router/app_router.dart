@@ -11,6 +11,7 @@ import '../../business_logic/bloc/auth/auth_bloc.dart';
 import '../../business_logic/bloc/auth/auth_event.dart';
 import '../../business_logic/bloc/message/message_bloc.dart';
 import '../../business_logic/bloc/nav/nav_bloc.dart';
+import '../../business_logic/bloc/send_message/send_message_bloc.dart';
 
 class AppNavigator extends StatelessWidget {
   final NavBloc _navBloc = NavBloc();
@@ -36,8 +37,15 @@ class AppNavigator extends StatelessWidget {
                 MaterialPage(
                   child: BlocProvider.value(
                     value: _navBloc,
-                    child: BlocProvider(
-                      create: (context) => MessageBloc(state.chatId),
+                    child: MultiBlocProvider(
+                      providers: [
+                        BlocProvider(
+                          create: (context) => MessageBloc(state.chatId),
+                        ),
+                        BlocProvider(
+                          create: (context) => SendMessageBloc(state.chatId),
+                        ),
+                      ],
                       child: ChatScreen(),
                     ),
                   ),

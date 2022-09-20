@@ -9,3 +9,5 @@ class ChatScreenState extends NavState {
   final String chatId;
   ChatScreenState({required this.chatId});
 }
+class HomeScreenState extends NavState {
+}

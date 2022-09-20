@@ -2,7 +2,7 @@ import '../../form_submition_status.dart';
 
 class SendMessageState {
   final String name;
-  bool get isValidName => name.isEmpty;
+  bool get isValidName => name.isNotEmpty;
 
   final FormSubmissionStatus formStatus;
 
@@ -21,4 +21,4 @@ class SendMessageState {
     );
   }
 }
-class SendMEssagesInitialState extends SendMessageState {}
+class SendMessagesInitialState extends SendMessageState {}

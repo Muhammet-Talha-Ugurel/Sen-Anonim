@@ -6,7 +6,11 @@ part 'nav_state.dart';
 
 class NavBloc extends Bloc<NavEvent, NavState> {
   NavBloc() : super(HomeState()) {
+    on<HomeScreenEvent>(_onHomeScreenEvent);
     on<ChatScreenEvent>(_onChatScreenEvent);
+  }
+  void _onHomeScreenEvent(HomeScreenEvent event, Emitter<NavState> emit){
+    emit(HomeScreenState());
   }
 
   void _onChatScreenEvent(ChatScreenEvent event, Emitter<NavState> emit){

@@ -7,18 +7,18 @@ import 'send_message_event.dart';
 import 'send_message_state.dart';
 
 
-class MessageBloc extends Bloc<SendMessageEvent, SendMessageState> {
+class SendMessageBloc extends Bloc<SendMessageEvent, SendMessageState> {
   final String chatId;
   final _appRepository = AppRepository();
-  MessageBloc(this.chatId) : super(SendMEssagesInitialState()) {
-    on<MessageTextChanged>(_onMessageTextChanged);
-    on<MessageSubmitted>(_onMessageSubmitted);
+  SendMessageBloc(this.chatId) : super(SendMessagesInitialState()) {
+    on<SendMessageTextChanged>(_onSendMessageTextChanged);
+    on<SendMessageSubmitted>(_onSendMessageSubmitted);
   }
-  void _onMessageTextChanged(MessageTextChanged event, Emitter<SendMessageState> emit) {
+  void _onSendMessageTextChanged(SendMessageTextChanged event, Emitter<SendMessageState> emit) {
     emit(state.copyWith(name: event.name));
   }
 
-  void _onMessageSubmitted(MessageSubmitted event, Emitter<SendMessageState> emit) async {
+  void _onSendMessageSubmitted(SendMessageSubmitted event, Emitter<SendMessageState> emit) async {
     emit(state.copyWith(formStatus: FormSubmitting()));
     try {
       final user = _appRepository.getUser();

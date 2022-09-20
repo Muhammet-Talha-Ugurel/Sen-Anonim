@@ -2,10 +2,10 @@ import '../../../data/models/message.dart';
 
 abstract class SendMessageEvent {}
 
-class MessageSubmitted extends SendMessageEvent {}
+class SendMessageSubmitted extends SendMessageEvent {}
 
-class MessageTextChanged extends SendMessageEvent {
+class SendMessageTextChanged extends SendMessageEvent {
   final String name;
 
-  MessageTextChanged({required this.name});
+  SendMessageTextChanged({required this.name});
 }
